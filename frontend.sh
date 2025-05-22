@@ -20,6 +20,7 @@ VALIDATE()
         exit 1
     else
         echo -e "installed successfully $G $2"
+    fi
 }
 
 USER_ROOT()
@@ -27,12 +28,13 @@ USER_ROOT()
     if [ $USERID -ne 0 ]
     then 
         echo "User should have $Y ROOT access $N to run the sofware"
+        exit 1
     fi
 }
 
 echo -e "$Y Software execution proccess started at : $TIMESTAMP" &>>$LOG_FILE_NAME
 
-VALIDATE
+USER_ROOT
 
 dnf install nginx -y &>>$LOG_FILE_NAME
 VALIDATE $? "Nginx Installed"
