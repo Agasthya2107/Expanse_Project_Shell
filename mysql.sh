@@ -26,7 +26,7 @@ USER_ROOT()
 {
     if [ $USERID -ne 0 ]
     then 
-        echo "User should have $Y ROOT access $N to run the sofware"
+        echo -e "User should have $Y ROOT access $N to run the sofware"
     fi
 }
 
@@ -43,8 +43,16 @@ VALIDATE $? "Enabling MYSQL Server"
 systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Starting MYSQL Server"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE_NAME
-VALIDATE $? "Secure Password Setup to the server"
+mysql -h 44.211.252.216 -u root -pExpenseApp@1 -e "show databases;" &>>$LOG_FILE_NAME
+
+if [ $? -ne 0 ]
+then
+    echo -e "$Y User allowed to setup the Password"
+    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE_NAME
+    VALIDATE $? "Secure Password Setup to the server"
+else
+    echo -e "$R User password already avaliable"
+fi
 
 
 
