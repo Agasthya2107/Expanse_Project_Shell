@@ -32,7 +32,7 @@ USER_ROOT()
 
 echo -e "$Y Software execution proccess started at : $TIMESTAMP" &>>$LOG_FILE_NAME
 
-VALIDATE
+USER_ROOT
 
 dnf install mysql-server -y &>>$LOG_FILE_NAME
 VALIDATE $? -e "$G Installing $N MySQL Server"
