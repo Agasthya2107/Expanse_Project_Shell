@@ -48,15 +48,14 @@ VALIDATE $? "NODEJS Installed"
 id expense &>>$LOG_FILE_NAME
 
 if [ $? -ne 0 ]
-{
-  then 
+then 
         echo "User allowed to add the new User"
         useradd expense &>>$LOG_FILE_NAME
         VALIDATE $? "New User EXPENSE Added"
     else
         echo "User already exists no need to create again"
 fi
-}
+
 mkdir /app &>>$LOG_FILE_NAME
 VALIDATE $? "Creating New APP Directory"
 
