@@ -27,6 +27,7 @@ USER_ROOT()
     if [ $USERID -ne 0 ]
     then 
         echo -e "User should have $Y ROOT access $N to run the sofware"
+        exit 1
     fi
 }
 
