@@ -16,10 +16,10 @@ VALIDATE()
 {
     if [ $1 -ne 0 ]
     then 
-        echo -e "installation failed $R  $2"
+        echo -e "installation failed $R $2 $N"
         exit 1
     else
-        echo -e "installed successfully $G $2"
+        echo -e "installed successfully $G $2 $N"
     fi
 }
 
@@ -53,7 +53,7 @@ then
         useradd expense &>>$LOG_FILE_NAME
         VALIDATE $? "New User EXPENSE Added"
     else
-        echo -e "$R User already exists no need to create again"
+        echo -e "$R User already exists no need to create again $N"
 fi
 
 mkdir -p /app &>>$LOG_FILE_NAME
@@ -62,7 +62,8 @@ VALIDATE $? "Creating New APP Directory"
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Bacakup File Downloaded"
 
-cd /app
+cd /app &>>$LOG_FILE_NAME
+rm -rf /app/*
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Backed File Unzip is completed"
