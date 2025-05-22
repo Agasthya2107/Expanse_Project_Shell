@@ -67,7 +67,7 @@ cp /home/ec2-user/Expanse_Project_Shell/backend.service /etc/systemd/system/back
 dnf install mysql -y &>>$LOG_FILE_NAME
 VALIDATE $? "MYSQL Server Installed"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
+mysql -h  44.211.252.216 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE_NAME
 VALIDATE $? "Setting up the transactions schema and tables"
 
 systemctl daemon-reload &>>$LOG_FILE_NAME
