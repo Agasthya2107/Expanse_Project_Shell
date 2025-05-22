@@ -20,6 +20,7 @@ VALIDATE()
         exit 1
     else
         echo -e "installed successfully $G $2"
+    fi    
 }
 USER_ROOT()
 {
