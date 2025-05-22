@@ -20,6 +20,7 @@ VALIDATE()
         exit 1
     else
         echo -e "installed successfully $G $2"
+    fi
 }
 
 USER_ROOT()
@@ -27,12 +28,13 @@ USER_ROOT()
     if [ $USERID -ne 0 ]
     then 
         echo "User should have $Y ROOT access $N to run the sofware"
+        exit 1
     fi
 }
 
 echo -e "$Y Software execution proccess started at : $TIMESTAMP" &>>$LOG_FILE_NAME
 
-VALIDATE
+USER_ROOT
 
 dnf module disable nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "NODEJS Module Disabled"
@@ -59,6 +61,8 @@ VALIDATE $? "Backed File Unzip is completed"
 
 npm install &>>$LOG_FILE_NAME
 VALIDATE $? "NPM Installed"
+
+cp /home/ec2-user/Expanse_Project_Shell/backend.service /etc/systemd/system/backend.service &>>$LOG_FILE_NAME
 
 dnf install mysql -y &>>$LOG_FILE_NAME
 VALIDATE $? "MYSQL Server Installed"
