@@ -16,10 +16,10 @@ VALIDATE()
 {
     if [ $1 -ne 0 ]
     then 
-        echo -e "installation failed $R  $2"
+        echo -e "installation failed $R $2 $N"
         exit 1
     else
-        echo -e "installed successfully $G $2"
+        echo -e "installed successfully $G $2 $N"
     fi    
 }
 USER_ROOT()
