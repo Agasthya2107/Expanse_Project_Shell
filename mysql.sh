@@ -35,16 +35,16 @@ echo -e "$Y Software execution proccess started at : $TIMESTAMP" &>>$LOG_FILE_NA
 VALIDATE
 
 dnf install mysql-server -y &>>$LOG_FILE_NAME
-VALIDATE $? "Installing MySQL Server"
+VALIDATE $? -e "$G Installing $N MySQL Server"
 
 systemctl enable mysqld &>>$LOG_FILE_NAME
-VALIDATE $? "Enabling MYSQL Server"
+VALIDATE $? -e "$G Enabling $N MYSQL Server"
 
 systemctl start mysqld &>>$LOG_FILE_NAME
-VALIDATE $? "Starting MYSQL Server"
+VALIDATE $? -e "$G Starting $N MYSQL Server"
 
 mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOG_FILE_NAME
-VALIDATE $? "Secure Password Setup to the server"
+VALIDATE $? "$G Secure Password $N Setup to the server"
 
 
 
