@@ -21,7 +21,6 @@ VALIDATE()
     else
         echo -e "installed successfully $G $2"
 }
-
 USER_ROOT()
 {
     if [ $USERID -ne 0 ]
